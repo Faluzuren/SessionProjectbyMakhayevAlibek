@@ -12,7 +12,7 @@ public class Main {
             ObjectOutputStream outputStream = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
 
-            if (pd.getOperationType().equals("REGISTRATION ")) {
+            if (pd.getOperationType().equals("REGISTRATION")) {
                 outputStream.writeObject(pd);
             } else if (pd.getOperationType().equals("LISTGUESTS")) {
                 outputStream.writeObject(pd);
