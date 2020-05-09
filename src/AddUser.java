@@ -6,10 +6,12 @@ import java.awt.event.ActionListener;
 public class AddUser extends Container {
     private JLabel PasswordLabel;
     private JLabel NickNameLabel;
+    private JLabel emailLabel;
     private JLabel RegionLabel;
 
     private JTextField NickNameText;
-    private JTextField PasswordText;
+    private JPasswordField PasswordText;
+    private JTextField emailText;
     private String[] Regions = {"Asia", "Europe", "America",};
     private JComboBox RegionBox;
 
@@ -32,40 +34,50 @@ public class AddUser extends Container {
         PasswordLabel.setBounds(90,100,60,30);
         add(PasswordLabel);
 
-        PasswordText = new JTextField();
+        PasswordText = new JPasswordField();
         PasswordText.setBounds(150, 100, 150,30);
         add(PasswordText);
 
+        emailLabel = new JLabel("email");
+        emailLabel.setBounds(90,140,60,30);
+        add(emailLabel);
+
+        emailText = new JTextField();
+        emailText.setBounds(150, 140, 150, 30);
+        add(emailText);
+
         RegionLabel = new JLabel("Regions");
-        RegionLabel.setBounds(90,140,60,30);
+        RegionLabel.setBounds(90,180,60,30);
         add(RegionLabel);
 
         RegionBox = new JComboBox(Regions);
-        RegionBox.setBounds(150,140,150,30);
+        RegionBox.setBounds(150,180,150,30);
         add(RegionBox);
 
         regButton = new JButton("REGISTRATION");
-        regButton.setBounds(90, 220, 210, 30);
+        regButton.setBounds(90, 260, 210, 30);
         regButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String Password = PasswordText.getText();
                 String Nickname = NickNameText.getText();
+                String Password = PasswordText.getText();
+                String email = emailText.getText();
                 String Regions = (String)RegionBox.getSelectedItem();
 
-                Guests guests = new Guests(null, Nickname, Password, Regions);
+                Guests guests = new Guests(null, Nickname, Password, email, Regions, "offline");
                 PackageData pd = new PackageData("REGISTRATION", guests);
                 Main.connect(pd);
 
                 NickNameText.setText("");
                 PasswordText.setText("");
+                emailText.setText("");
 
             }
         });
         add(regButton);
 
         backButton = new JButton("BACK");
-        backButton.setBounds(90, 260, 210, 30);
+        backButton.setBounds(90, 300, 210, 30);
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -73,10 +85,6 @@ public class AddUser extends Container {
                 Main.frame.AddWindow.setVisible(false);
             }
         });
-
-
         add(backButton);
-
-
     }
 }

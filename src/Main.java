@@ -25,6 +25,8 @@ public class Main {
                 }
 
                 ListGuests.text.append(s);
+            } else if (pd.getOperationType().equals("SIGNIN")) {
+                outputStream.writeObject(pd);
             }
             inputStream.close();
             outputStream.close();

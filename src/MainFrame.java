@@ -4,6 +4,7 @@ public class MainFrame extends JFrame {
     public static MainMenu menuWindow;
     public static AddUser AddWindow;
     public static ListGuests listWindow;
+    public static AccessWindow AccessWindow;
 
     public MainFrame(){
         setSize(500, 400);
@@ -24,6 +25,10 @@ public class MainFrame extends JFrame {
         listWindow.setVisible(false);
         add(listWindow);
 
+        AccessWindow = new AccessWindow();
+        AccessWindow.setLocation(0,0);
+        AccessWindow.setVisible(false);
+        add(AccessWindow);
 
     }
 }

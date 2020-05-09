@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 public class MainMenu extends Container {
     private JButton regBut;
     private JButton listBut;
+    private JButton accessBut;
     private JButton exitBut;
 
     public MainMenu(){
@@ -35,8 +36,20 @@ public class MainMenu extends Container {
         });
         add(listBut);
 
+        accessBut = new JButton("SIGN IN");
+        accessBut.setBounds(100,160,300,30);
+        accessBut.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Main.frame.menuWindow.setVisible(false);
+                Main.frame.AccessWindow.setVisible(true);
+            }
+
+        });
+        add(accessBut);
+
         exitBut = new JButton("EXIT");
-        exitBut.setBounds(100, 160, 300, 30);
+        exitBut.setBounds(100, 200, 300, 30);
         exitBut.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
