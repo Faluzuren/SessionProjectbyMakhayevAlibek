@@ -50,6 +50,7 @@ public class DBManager {
 
                     guestsArrayList.add(new Guests(id, nickName, password, email, region, "offline"));
 
+
                 }
             statement.close();
         }catch (Exception e) {
