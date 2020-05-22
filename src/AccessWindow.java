@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class AccessWindow extends Container {
     private JLabel loginLabel;
@@ -16,39 +17,45 @@ public class AccessWindow extends Container {
 
 
     public AccessWindow() {
-        setSize(800, 600);
+        setSize(1200, 1000);
         setLayout(null);
 
         loginLabel = new JLabel("Login");
-        loginLabel.setBounds(90,60,60,30);
+        loginLabel.setBounds(450,300,60,30);
         add(loginLabel);
 
         loginText = new JTextField();
-        loginText.setBounds(150, 60, 150, 30);
+        loginText.setBounds(500, 300, 160, 30);
         add(loginText);
 
-
         passwordLabel = new JLabel("Password");
-        passwordLabel.setBounds(90,100,60,30);
+        passwordLabel.setBounds(450,340,60,30);
         add(passwordLabel);
 
         passwordField = new JPasswordField();
-        passwordField.setBounds(150, 100, 150, 30);
+        passwordField.setBounds(510, 340, 150, 30);
         add(passwordField);
 
         signIn = new JButton("Sign in");
-        signIn.setBounds(90, 140, 210, 30);
+        signIn.setBounds(450, 380, 210, 30);
         signIn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PackageData pd = new PackageData("SIGNIN");
-                Main.connect(pd);
+                String nickname = loginText.getText().trim();
+                String password = String.valueOf( passwordField.getText()).trim();
+
+                if(!nickname.equals("") && !password.equals("")) {
+                        loginUser(nickname, password);
+                } else {
+                    System.out.println("Login and password is empty");
+                }
             }
         });
         add(signIn);
 
+
         back = new JButton("BACK");
-        back.setBounds(90, 300, 210, 30);
+        back.setBounds(450, 500, 210, 30);
         back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -59,6 +66,25 @@ public class AccessWindow extends Container {
         add(back);
     }
 
+    private void loginUser(String nickname, String password) {
+        DBManager dbManager = new DBManager();
+        Guests guests = new Guests();
+        guests.setNickName(nickname);
+        guests.setPassword(password);
+        ResultSet resultSet = dbManager.signIn(guests);
 
+        int counter = 0;
+        try {
+            while (resultSet.next()) {
+                counter++;
+            }
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        if(counter >= 1) {
+            System.out.println("Success");
+        }
+    }
 
 }

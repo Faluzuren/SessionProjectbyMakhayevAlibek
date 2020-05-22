@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 public class DBManager {
     private Connection connection;
-    public void connect() {
+        public void connect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/internerstore?useUnicode=true&serverTimezone=UTC", "root", ""
             );
-        } catch (Exception e) {
+
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -48,6 +49,7 @@ public class DBManager {
                     String region = resultSet.getString("region");
 
                     guestsArrayList.add(new Guests(id, nickName, password, email, region, "offline"));
+
                 }
             statement.close();
         }catch (Exception e) {
@@ -56,27 +58,46 @@ public class DBManager {
         return guestsArrayList;
     }
 
-    public void signIn(String nickName, String password) {
-        try{
-            Statement statement = connection.createStatement();
-            /*PreparedStatement statement =  connection.prepareStatement(
-                    "SELECT * FROM users WHERE login = ? AND password = ?"
-            );
 
-             */
-            ResultSet resultSet = statement.executeQuery(
-                    "SELECT * FROM users WHERE login = ? AND password = ?"
-            );
-            if(resultSet.next()) {
-                JOptionPane.showMessageDialog(null, "You were signed in");
+    public ResultSet signIn(Guests guests) {
+            ResultSet resultSet = null;
+            try {
+                PreparedStatement statement = connection.prepareStatement(
+                        "SELECT * FROM users WHERE nickname = ? AND password = ?"
+                );
+                statement.setString(1, guests.getNickName());
+                statement.setString(2, guests.getPassword());
 
-            }else {
-                JOptionPane.showMessageDialog(null, "An incorrect login or password");
-            }
-            } catch (Exception e) {
+                resultSet = statement.executeQuery();
+
+                if(resultSet.next()) {
+                    JOptionPane.showMessageDialog(null, "Successful login");
+                    Main.frame.AccessWindow.setVisible(false);
+                    Main.frame.shopWindow.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid username/password");
+                }
+
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        }
+            return resultSet;
+    }
 
+    public void addProduct(Products products) {
+            try{
+                PreparedStatement statement = connection.prepareStatement("" + "INSERT INTO basket (product_id, num, price) " + "VALUES (NULL ?, ?)"
+                );
+                statement.setInt(1, 100);
+                statement.setInt(2, 50000);
+
+                statement.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Successful registration");
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+    }
 
     }

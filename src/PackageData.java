@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class PackageData implements Serializable {
     private String operationType;
     private Guests guests;
+    private Products products;
     private ArrayList<Guests> guest;
 
     public PackageData(String operationType, Guests guests) {
@@ -41,6 +42,14 @@ public class PackageData implements Serializable {
 
     public void setGuest(ArrayList<Guests> guest) {
         this.guest = guest;
+    }
+
+    public Products getProducts() {
+        return products;
+    }
+
+    public void setProducts(Products products) {
+        this.products = products;
     }
 }
 

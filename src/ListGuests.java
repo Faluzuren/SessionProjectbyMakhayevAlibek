@@ -9,26 +9,28 @@ class ListGuests extends Container {
     private JButton buttonBACK;
 
     public ListGuests() {
-        setSize(500,400);
+        setSize(1200,1000);
         setLayout(null);
 
         text = new JTextArea();
-        text.setBounds(90, 50, 300, 150);
+        text.setBounds(450, 300, 300, 150);
         add(text);
 
         buttonLIST = new JButton("LISTGUESTS");
-        buttonLIST.setBounds(90, 220, 145, 30);
+        buttonLIST.setBounds(520, 500, 145, 30);
         buttonLIST.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PackageData pd = new PackageData("LISTGUESTS");
                 Main.connect(pd);
+                PackageData pd1 = new PackageData("ADDPROD");
+                Main.connect(pd1);
             }
         });
         add(buttonLIST);
 
         buttonBACK = new JButton("BACK");
-        buttonBACK.setBounds(245, 220, 145,30);
+        buttonBACK.setBounds(520, 600, 145,30);
         buttonBACK.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

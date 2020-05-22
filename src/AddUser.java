@@ -19,48 +19,48 @@ public class AddUser extends Container {
     private JButton backButton;
 
     public AddUser(){
-        setSize(500,400);
+        setSize(1200,1000);
         setLayout(null);
 
         NickNameLabel = new JLabel("Nickname");
-        NickNameLabel.setBounds(90,60,60,30);
+        NickNameLabel.setBounds(400,300,60,30);
         add(NickNameLabel);
 
         NickNameText = new JTextField();
-        NickNameText.setBounds(150, 60, 150, 30);
+        NickNameText.setBounds(460, 300, 150, 30);
         add(NickNameText);
 
         PasswordLabel = new JLabel("Password");
-        PasswordLabel.setBounds(90,100,60,30);
+        PasswordLabel.setBounds(400,340,60,30);
         add(PasswordLabel);
 
         PasswordText = new JPasswordField();
-        PasswordText.setBounds(150, 100, 150,30);
+        PasswordText.setBounds(460, 340, 150,30);
         add(PasswordText);
 
-        emailLabel = new JLabel("email");
-        emailLabel.setBounds(90,140,60,30);
+        emailLabel = new JLabel("Email");
+        emailLabel.setBounds(400,380,60,30);
         add(emailLabel);
 
         emailText = new JTextField();
-        emailText.setBounds(150, 140, 150, 30);
+        emailText.setBounds(460, 380, 150, 30);
         add(emailText);
 
         RegionLabel = new JLabel("Regions");
-        RegionLabel.setBounds(90,180,60,30);
+        RegionLabel.setBounds(400,420,60,30);
         add(RegionLabel);
 
         RegionBox = new JComboBox(Regions);
-        RegionBox.setBounds(150,180,150,30);
+        RegionBox.setBounds(460,420,150,30);
         add(RegionBox);
 
         regButton = new JButton("REGISTRATION");
-        regButton.setBounds(90, 260, 210, 30);
+        regButton.setBounds(400, 500, 210, 30);
         regButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String Nickname = NickNameText.getText();
-                String Password = PasswordText.getText();
+                String Nickname = NickNameText.getText().trim();
+                String Password = PasswordText.getText().trim();
                 String email = emailText.getText();
                 String Regions = (String)RegionBox.getSelectedItem();
 
@@ -77,7 +77,7 @@ public class AddUser extends Container {
         add(regButton);
 
         backButton = new JButton("BACK");
-        backButton.setBounds(90, 300, 210, 30);
+        backButton.setBounds(400, 600, 210, 30);
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

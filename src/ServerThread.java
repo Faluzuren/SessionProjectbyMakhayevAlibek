@@ -28,7 +28,18 @@ public class ServerThread extends Thread{
                     ArrayList<Guests> infoForClient = manager.getAllGuests();
                     PackageData toClient = new PackageData(infoForClient);
                     outputStream.writeObject(toClient);
+                } else if(packageData.getOperationType().equals("ADDPROD")) {
+                    Products products = packageData.getProducts();
+                    manager.addProduct(products);
+
                 }
+                /*else if(packageData.getOperationType().equals("SIGNIN")) {
+
+                    PackageData Check = new PackageData();
+                }
+                
+                 */
+
             }
 
             inputStream.close();
