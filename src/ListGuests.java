@@ -23,8 +23,6 @@ class ListGuests extends Container {
             public void actionPerformed(ActionEvent e) {
                 PackageData pd = new PackageData("LISTGUESTS");
                 Main.connect(pd);
-                PackageData pd1 = new PackageData("ADDPROD");
-                Main.connect(pd1);
             }
         });
         add(buttonLIST);

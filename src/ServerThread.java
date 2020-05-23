@@ -19,6 +19,7 @@ public class ServerThread extends Thread{
             ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
 
             PackageData packageData = null;
+            ProductData productData = null;
             while ( (packageData=(PackageData)inputStream.readObject())!=null) {
                 if(packageData.getOperationType().equals("REGISTRATION")) {
                     Guests guestsFromClient = packageData.getGuests();
@@ -28,18 +29,11 @@ public class ServerThread extends Thread{
                     ArrayList<Guests> infoForClient = manager.getAllGuests();
                     PackageData toClient = new PackageData(infoForClient);
                     outputStream.writeObject(toClient);
-                } else if(packageData.getOperationType().equals("ADDPROD")) {
-                    Products products = packageData.getProducts();
+                } else if(productData.getOperationType().equals("ADDPROD")) {
+                    Products products = productData.getProducts();
                     manager.addProduct(products);
 
                 }
-                /*else if(packageData.getOperationType().equals("SIGNIN")) {
-
-                    PackageData Check = new PackageData();
-                }
-                
-                 */
-
             }
 
             inputStream.close();

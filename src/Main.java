@@ -38,8 +38,8 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) throws IOException {
-        frame = new MainFrame();
-        frame.setVisible(true);
+        public static void main (String[]args) throws IOException {
+            frame = new MainFrame();
+            frame.setVisible(true);
+        }
     }
-}

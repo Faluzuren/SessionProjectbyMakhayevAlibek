@@ -32,7 +32,8 @@ public class ShopWindow extends Container {
         addfirst.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Products products = new Products(1, null,50, 10000);
+                ProductData pd1 = new ProductData("ADDPROD", products);
             }
         });
 
@@ -41,6 +42,12 @@ public class ShopWindow extends Container {
         secondbutton = new JButton();
         secondbutton.setBounds(290, 60, 200, 200);
         secondbutton.setIcon(new ImageIcon("src/img/Hudora_Longboard.jpg"));
+        secondbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Text here", "Hundora LongBoard", 1);
+            }
+        });
 
         add(secondbutton);
 
@@ -52,6 +59,12 @@ public class ShopWindow extends Container {
         thirdbutton = new JButton();
         thirdbutton.setBounds(550, 60, 200, 200);
         thirdbutton.setIcon(new ImageIcon("src/img/Penny JP-HB-12.jpg"));
+        thirdbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Text here", "Penny JP-HB-12", 1);
+            }
+        });
 
         add(thirdbutton);
 

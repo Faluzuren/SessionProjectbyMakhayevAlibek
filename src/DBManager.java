@@ -11,6 +11,10 @@ public class DBManager {
                     "jdbc:mysql://localhost:3306/internerstore?useUnicode=true&serverTimezone=UTC", "root", ""
             );
 
+            Statement statement = connection.createStatement();
+            int rows = statement.executeUpdate("INSERT INTO basket(customer_id, product_id, num, price)" + "VALUES (1, NULL, 50, 76000)");
+            System.out.printf("Added %d rows", rows);
+
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -87,11 +91,11 @@ public class DBManager {
 
     public void addProduct(Products products) {
             try{
-                PreparedStatement statement = connection.prepareStatement("" + "INSERT INTO basket (product_id, num, price) " + "VALUES (NULL ?, ?)"
+                PreparedStatement statement = connection.prepareStatement("" + "INSERT INTO basket (customer_id, product_id, num, price) " + "VALUES (?, NULL, ?, ?)"
                 );
-                statement.setInt(1, 100);
-                statement.setInt(2, 50000);
-
+                statement.setInt(1, products.getCustomer_id());
+                statement.setInt(2, products.getNum());
+                statement.setInt(3, products.getPrice());
                 statement.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Successful registration");
                 statement.close();

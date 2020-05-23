@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Май 22 2020 г., 20:04
+-- Время создания: Май 23 2020 г., 05:54
 -- Версия сервера: 10.4.11-MariaDB
 -- Версия PHP: 7.4.4
 
@@ -35,6 +35,13 @@ CREATE TABLE `basket` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Дамп данных таблицы `basket`
+--
+
+INSERT INTO `basket` (`customer_id`, `product_id`, `num`, `price`) VALUES
+(1, 1, 50, 76000);
+
+--
 -- Индексы сохранённых таблиц
 --
 
@@ -52,7 +59,7 @@ ALTER TABLE `basket`
 -- AUTO_INCREMENT для таблицы `basket`
 --
 ALTER TABLE `basket`
-  MODIFY `product_id` int(30) NOT NULL AUTO_INCREMENT;
+  MODIFY `product_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
